@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8558767402654038989}
   - component: {fileID: 3530121984023839149}
   m_Layer: 0
-  m_Name: Cube (6)
+  m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 7165087932357302165}
   - component: {fileID: 6682624228637047898}
   m_Layer: 0
-  m_Name: Cube (7)
+  m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -474,10 +474,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b40a48c30fab44f9ab39fb5594f1eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capacityLeft_: 100
+  maxCapacity_: 100
+  shotCost_: 6.5
+  reloadAmount_: 70
   controllerActionActivate: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  bulletPrefab_: {fileID: 0}
-  shootTR_: {fileID: 0}
-  shootForce_: 0
+  bulletPrefab_: {fileID: 4585340245941190999, guid: b57b25d5bccc2a34abaaa338644c5be0, type: 3}
+  shootTR_: {fileID: 6129876747952226748}
+  shootForce_: 20
+  pistolBody_: {fileID: 8013985203256176949}
+  fullLoadedColor_: {r: 0.16862746, g: 0.23529412, b: 0.40784314, a: 0}
+  emptyColor_: {r: 0.80335027, g: 0.94225967, b: 0.9496855, a: 0}
+  loadPercentage_: 0
 --- !u!1 &7793628871532633797
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +499,7 @@ GameObject:
   - component: {fileID: 8202069104380950670}
   - component: {fileID: 6111837766186360704}
   m_Layer: 0
-  m_Name: Cube (8)
+  m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,7 +587,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -596,7 +604,7 @@ GameObject:
   - component: {fileID: 5965496168198681957}
   - component: {fileID: 6379677375133127375}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,7 +653,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d4efdf9db54ce3f4f8d4a805ad93003e, type: 2}
+  - {fileID: 2100000, guid: 211a3b1b2c722bb408373a3e47f70b8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -732,7 +740,7 @@ GameObject:
   - component: {fileID: 4511571018595309585}
   - component: {fileID: 7456806354473915886}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: Handle-Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,7 +828,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -837,7 +845,7 @@ GameObject:
   - component: {fileID: 782473221999705261}
   - component: {fileID: 408142337491960157}
   m_Layer: 0
-  m_Name: Sphere (6)
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -925,7 +933,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

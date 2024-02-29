@@ -22,4 +22,13 @@ public class BulletController : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter(Collider other){
+        if(other.gameObject.layer == LayerMask.NameToLayer("target")){
+            //Reload
+            GameManager.instance.spawnTarget();
+            Destroy(other.gameObject);
+            Destroy(this);
+        }
+    }
 }
