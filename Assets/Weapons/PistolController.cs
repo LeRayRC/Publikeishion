@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 // using Uni
 
 public class PistolController : MonoBehaviour
@@ -14,6 +15,7 @@ public class PistolController : MonoBehaviour
     public float reloadAmount_;
 
     public InputActionReference controllerActionActivate;
+    public XRGrabInteractable grabInteractable_;
     public GameObject bulletPrefab_;
     public Transform shootTR_;
     public float shootForce_;
@@ -22,14 +24,26 @@ public class PistolController : MonoBehaviour
     private Material bodyMat_;
     public Color fullLoadedColor_;
     public Color emptyColor_;
+    public bool isGrabbed_;
+
+    //Init values
+    public Transform initPos_;
+    private Quaternion initRot_;
+
 
     [SerializeField]
     private float loadPercentage_;
     public void Start(){
+        initRot_ = gameObject.transform.rotation;
+
         capacityLeft_ = maxCapacity_;
         bodyMat_ = pistolBody_.GetComponent<MeshRenderer>().material;
         bodyMat_.color = fullLoadedColor_;
         loadPercentage_ = capacityLeft_ / maxCapacity_;
+        isGrabbed_ = false;
+        grabInteractable_ = GetComponent<XRGrabInteractable>();
+        grabInteractable_.selectEntered.AddListener(OnGrabbed);
+        grabInteractable_.selectExited.AddListener(OnRelease);
     }
     private void Awake(){
         controllerActionActivate.action.performed += Shoot;
@@ -47,12 +61,17 @@ public class PistolController : MonoBehaviour
     }
 
     private void Shoot(InputAction.CallbackContext obj){
-        if(capacityLeft_ >= shotCost_){
-            GameObject go_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
-            Rigidbody rb_ = go_.GetComponent<Rigidbody>();
-            rb_.AddForce(shootTR_.forward * shootForce_,ForceMode.Impulse);
-            capacityLeft_-= shotCost_;
-            loadPercentage_ = capacityLeft_ / maxCapacity_;
+        if(isGrabbed_){
+            if(capacityLeft_ >= shotCost_){
+                GameObject go_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
+                Rigidbody rb_ = go_.GetComponent<Rigidbody>();
+                rb_.AddForce(shootTR_.forward * shootForce_,ForceMode.Impulse);
+                capacityLeft_-= shotCost_;
+                loadPercentage_ = capacityLeft_ / maxCapacity_;
+
+                //Trigger Sound
+                GetComponent<AudioSource>().Play();
+            }
         }
     }
 
@@ -62,6 +81,16 @@ public class PistolController : MonoBehaviour
             Reload(reloadAmount_);
             Debug.Log("Reloading");
         }
+    }
+
+    void OnGrabbed(SelectEnterEventArgs args){
+        isGrabbed_ = true;
+    }
+
+    void OnRelease(SelectExitEventArgs args){
+        isGrabbed_ = false;
+        gameObject.transform.rotation = initRot_;
+        gameObject.transform.position = initPos_.position;
     }
 
     public void Reload(float reloadAmount){

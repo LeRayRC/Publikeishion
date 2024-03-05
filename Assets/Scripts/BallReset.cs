@@ -6,6 +6,7 @@ public class BallReset : MonoBehaviour
 {
     Vector3 initPos_;
     Rigidbody rb_;
+    
     // Start is called before the first frame update
     void Start()
     {

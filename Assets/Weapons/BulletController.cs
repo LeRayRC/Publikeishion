@@ -27,6 +27,12 @@ public class BulletController : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("target")){
             //Reload
             GameManager.instance.spawnTarget();
+
+            //Spawn FX at target
+            GameObject go = Instantiate<GameObject>(GameManager.instance.impactTargetFX_, other.gameObject.transform.position, other.gameObject.transform.rotation);
+            go.GetComponent<ParticleSystem>().Play();
+            go.GetComponent<AudioSource>().Play();
+            Destroy(go, go.GetComponent<ParticleSystem>().main.duration);
             Destroy(other.gameObject);
             Destroy(this);
         }

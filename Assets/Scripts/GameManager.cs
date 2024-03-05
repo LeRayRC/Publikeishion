@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public List<Transform> spawnTRs_ = new List<Transform>();
     public GameObject targetPrefab_;
     public GameObject player_;
+    public GameObject impactTargetFX_;
+    public GameObject impacTargetSound_;
+    
 
 
     void Awake(){
