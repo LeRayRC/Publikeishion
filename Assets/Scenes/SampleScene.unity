@@ -8769,6 +8769,10 @@ PrefabInstance:
       propertyPath: initPos_
       value: 
       objectReference: {fileID: 224722503}
+    - target: {fileID: 973067352820634514, guid: b578e8564454c90479ca2e2d7fcb10e0, type: 3}
+      propertyPath: shootForce_
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5422869795308804647, guid: b578e8564454c90479ca2e2d7fcb10e0, type: 3}
       propertyPath: m_InteractionManager
       value: 
