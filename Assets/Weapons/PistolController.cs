@@ -9,10 +9,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PistolController : MonoBehaviour
 {
-    public float capacityLeft_;
-    public float maxCapacity_;
+    
     public float shotCost_;
-    public float reloadAmount_;
 
     public InputActionReference controllerActionActivate;
     public XRGrabInteractable grabInteractable_;
@@ -26,20 +24,22 @@ public class PistolController : MonoBehaviour
     public Color emptyColor_;
     public bool isGrabbed_;
 
+    public bool hasWaterTank_;
     //Init values
     public Transform initPos_;
     private Quaternion initRot_;
 
+    public WaterTankController WaterTank_;
 
-    [SerializeField]
-    private float loadPercentage_;
+    
     public void Start(){
         initRot_ = gameObject.transform.rotation;
 
-        capacityLeft_ = maxCapacity_;
+        hasWaterTank_ = true;
+        
         bodyMat_ = pistolBody_.GetComponent<MeshRenderer>().material;
         bodyMat_.color = fullLoadedColor_;
-        loadPercentage_ = capacityLeft_ / maxCapacity_;
+        
         isGrabbed_ = false;
         grabInteractable_ = GetComponent<XRGrabInteractable>();
         grabInteractable_.selectEntered.AddListener(OnGrabbed);
@@ -51,24 +51,20 @@ public class PistolController : MonoBehaviour
     }
 
     public void Update(){
-        //Update body color 
-        Vector3 bodyColor_ = new Vector3();
-        bodyColor_.x = Mathf.Lerp(emptyColor_.r, fullLoadedColor_.r, loadPercentage_);
-        bodyColor_.y = Mathf.Lerp(emptyColor_.g, fullLoadedColor_.g, loadPercentage_);
-        bodyColor_.z = Mathf.Lerp(emptyColor_.b, fullLoadedColor_.b, loadPercentage_);
-
-        bodyMat_.color = new Color(bodyColor_.x, bodyColor_.y, bodyColor_.z, 1.0f);
     }
 
+    
+
     private void Shoot(InputAction.CallbackContext obj){
-        if(isGrabbed_){
-            if(capacityLeft_ >= shotCost_){
+        if(isGrabbed_ && hasWaterTank_){
+            if(WaterTank_.capacityLeft_ >= shotCost_){
                 GameObject go_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
                 Rigidbody rb_ = go_.GetComponent<Rigidbody>();
                 rb_.AddForce(shootTR_.forward * shootForce_,ForceMode.Impulse);
-                capacityLeft_-= shotCost_;
-                loadPercentage_ = capacityLeft_ / maxCapacity_;
+                WaterTank_.capacityLeft_-= shotCost_;
+                WaterTank_.loadPercentage_ = WaterTank_.capacityLeft_ / WaterTank_.maxCapacity_;
 
+                WaterTank_.SetTankColor();
                 //Trigger Sound
                 GetComponent<AudioSource>().Play();
             }
@@ -76,11 +72,7 @@ public class PistolController : MonoBehaviour
     }
 
     public void OnTriggerStay(Collider other){
-        if(other.gameObject.layer == LayerMask.NameToLayer("fountain")){
-            //Reload
-            Reload(reloadAmount_);
-            Debug.Log("Reloading");
-        }
+        
     }
 
     void OnGrabbed(SelectEnterEventArgs args){
@@ -93,15 +85,5 @@ public class PistolController : MonoBehaviour
         gameObject.transform.position = initPos_.position;
     }
 
-    public void Reload(float reloadAmount){
-        if (capacityLeft_ > maxCapacity_)
-        {
-            capacityLeft_ = maxCapacity_;
-        }
-        else
-        {
-            capacityLeft_ += reloadAmount * Time.deltaTime;
-            loadPercentage_ = capacityLeft_ / maxCapacity_;
-        }
-    }
+    
 }
