@@ -17,6 +17,7 @@ public class PistolController : MonoBehaviour
     public InputActionReference controllerActionActivate;
     public XRGrabInteractable grabInteractable_;
     public GameObject bulletPrefab_;
+    public GameObject bulletTrailPrefab_;
     public Transform shootTR_;
     public float shootForce_;
 
@@ -25,6 +26,9 @@ public class PistolController : MonoBehaviour
     public Color fullLoadedColor_;
     public Color emptyColor_;
     public bool isGrabbed_;
+    public AudioClip[] soundTracks_;
+    private AudioSource audioSource_;
+
 
     //Init values
     public Transform initPos_;
@@ -44,6 +48,7 @@ public class PistolController : MonoBehaviour
         grabInteractable_ = GetComponent<XRGrabInteractable>();
         grabInteractable_.selectEntered.AddListener(OnGrabbed);
         grabInteractable_.selectExited.AddListener(OnRelease);
+        audioSource_ = GetComponent<AudioSource>();
     }
     private void Awake(){
         controllerActionActivate.action.performed += Shoot;
@@ -60,6 +65,17 @@ public class PistolController : MonoBehaviour
         bodyMat_.color = new Color(bodyColor_.x, bodyColor_.y, bodyColor_.z, 1.0f);
     }
 
+    private IEnumerator ShootTrail(){
+
+        for (int i = 0; i < 5; i++){
+            GameObject go_ = Instantiate<GameObject>(bulletTrailPrefab_, shootTR_.position, shootTR_.rotation);
+            Rigidbody rb_ = go_.GetComponent<Rigidbody>();
+            rb_.AddForce(shootTR_.forward * shootForce_, ForceMode.Impulse);
+            Debug.Log("Trail");
+            yield return new WaitForSeconds(0.0001f);
+        }
+    }
+
     private void Shoot(InputAction.CallbackContext obj){
         if(isGrabbed_){
             if(capacityLeft_ >= shotCost_){
@@ -70,7 +86,16 @@ public class PistolController : MonoBehaviour
                 loadPercentage_ = capacityLeft_ / maxCapacity_;
 
                 //Trigger Sound
-                GetComponent<AudioSource>().Play();
+                audioSource_.clip = soundTracks_[0];
+                audioSource_.Play();
+
+
+                // GameObject go2_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
+                // Rigidbody rb2_ = go2_.GetComponent<Rigidbody>();
+                // rb2_.AddForce(shootTR_.forward * shootForce_, ForceMode.Impulse);
+                // Debug.Log("Trail");
+
+                StartCoroutine(ShootTrail());
             }
         }
     }
@@ -102,6 +127,8 @@ public class PistolController : MonoBehaviour
         {
             capacityLeft_ += reloadAmount * Time.deltaTime;
             loadPercentage_ = capacityLeft_ / maxCapacity_;
+            audioSource_.clip = soundTracks_[1];
+            audioSource_.Play();
         }
     }
 }
