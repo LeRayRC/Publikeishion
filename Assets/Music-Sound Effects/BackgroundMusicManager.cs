@@ -24,16 +24,16 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private void PlayNextTrack()
     {
-        // Selecciona aleatoriamente un índice de pista de música
+        // Selecciona aleatoriamente un indice de pista de musica
         int randomIndex = Random.Range(0, musicTracks.Length);
 
-        // Asegúrate de que la próxima pista no sea la misma que la pista actual
+        // Asegurate de que la proxima pista no sea la misma que la pista actual
         while (randomIndex == currentTrackIndex)
         {
             randomIndex = Random.Range(0, musicTracks.Length);
         }
 
-        // Actualiza el índice de pista actual
+        // Actualiza el indice de pista actual
         currentTrackIndex = randomIndex;
 
         // Cambia la pista de audio y reproduce

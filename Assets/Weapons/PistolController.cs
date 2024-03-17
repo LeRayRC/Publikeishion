@@ -72,7 +72,7 @@ public class PistolController : MonoBehaviour
             Rigidbody rb_ = go_.GetComponent<Rigidbody>();
             rb_.AddForce(shootTR_.forward * shootForce_, ForceMode.Impulse);
             Debug.Log("Trail");
-            yield return new WaitForSeconds(0.0001f);
+            yield return null;
         }
     }
 
@@ -96,9 +96,26 @@ public class PistolController : MonoBehaviour
                 // Debug.Log("Trail");
 
                 StartCoroutine(ShootTrail());
+            }else{
+                audioSource_.clip = soundTracks_[2];
+                audioSource_.Play();
             }
         }
     }
+
+    public void OnTriggerEnter(Collider other){
+        if(other.gameObject.layer == LayerMask.NameToLayer("fountain")){
+            audioSource_.clip = soundTracks_[1];
+            audioSource_.Play();
+        }
+    }
+   
+    public void OnTriggerExit(Collider other){
+        if(audioSource_.isPlaying ){
+            audioSource_.Stop();
+        }    
+    }
+    
 
     public void OnTriggerStay(Collider other){
         if(other.gameObject.layer == LayerMask.NameToLayer("fountain")){
@@ -127,8 +144,7 @@ public class PistolController : MonoBehaviour
         {
             capacityLeft_ += reloadAmount * Time.deltaTime;
             loadPercentage_ = capacityLeft_ / maxCapacity_;
-            audioSource_.clip = soundTracks_[1];
-            audioSource_.Play();
+            
         }
     }
 }
