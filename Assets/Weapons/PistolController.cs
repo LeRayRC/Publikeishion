@@ -15,6 +15,7 @@ public class PistolController : MonoBehaviour
     public InputActionReference controllerActionActivate;
     public XRGrabInteractable grabInteractable_;
     public GameObject bulletPrefab_;
+    public GameObject bulletTrailPrefab_;
     public Transform shootTR_;
     public float shootForce_;
 
@@ -23,6 +24,11 @@ public class PistolController : MonoBehaviour
     public Color fullLoadedColor_;
     public Color emptyColor_;
     public bool isGrabbed_;
+    public AudioClip[] soundTracks_;
+    private AudioSource audioSource_;
+
+    public int shotTrailsAmount_;
+
 
     public bool hasWaterTank_;
     //Init values
@@ -44,6 +50,7 @@ public class PistolController : MonoBehaviour
         grabInteractable_ = GetComponent<XRGrabInteractable>();
         grabInteractable_.selectEntered.AddListener(OnGrabbed);
         grabInteractable_.selectExited.AddListener(OnRelease);
+        audioSource_ = GetComponent<AudioSource>();
     }
     private void Awake(){
         controllerActionActivate.action.performed += Shoot;
@@ -51,9 +58,22 @@ public class PistolController : MonoBehaviour
     }
 
     public void Update(){
+        GameManager.instance.UiGameobject_.SetActive(!isGrabbed_);
     }
 
-    
+    private IEnumerator ShootTrail(){
+        float shotScale_ = 0.0f; 
+        for (int i = 0; i < shotTrailsAmount_; i++){
+            shotScale_ = Mathf.Clamp(1.0f - ((float)(i +1) / (float)shotTrailsAmount_), 0.1f, 1.0f);
+            GameObject go_ = Instantiate<GameObject>(bulletTrailPrefab_, shootTR_.position, shootTR_.rotation);
+            go_.transform.localScale = new Vector3(go_.transform.localScale.x * shotScale_,
+                                                   go_.transform.localScale.y * shotScale_,
+                                                   go_.transform.localScale.z * shotScale_) ;
+            Rigidbody rb_ = go_.GetComponent<Rigidbody>();
+            rb_.AddForce(shootTR_.forward * shootForce_, ForceMode.Impulse);
+            yield return null;
+        }
+    }
 
     private void Shoot(InputAction.CallbackContext obj){
         if(isGrabbed_ && hasWaterTank_){
@@ -66,13 +86,21 @@ public class PistolController : MonoBehaviour
 
                 WaterTank_.SetTankColor();
                 //Trigger Sound
-                GetComponent<AudioSource>().Play();
+                audioSource_.clip = soundTracks_[0];
+                audioSource_.Play();
+
+
+                // GameObject go2_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
+                // Rigidbody rb2_ = go2_.GetComponent<Rigidbody>();
+                // rb2_.AddForce(shootTR_.forward * shootForce_, ForceMode.Impulse);
+                // Debug.Log("Trail");
+
+                //StartCoroutine(ShootTrail());
+            }else{
+                audioSource_.clip = soundTracks_[1];
+                audioSource_.Play();
             }
         }
-    }
-
-    public void OnTriggerStay(Collider other){
-        
     }
 
     void OnGrabbed(SelectEnterEventArgs args){

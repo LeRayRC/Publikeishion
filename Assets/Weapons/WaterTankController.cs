@@ -19,6 +19,8 @@ public class WaterTankController : MonoBehaviour
     public Color fullLoadedColor_;
     public Color emptyColor_;
     public bool grabbed_;
+
+
     // public bool placeOnReference_;
     // Start is called before the first frame update
     void Start()
@@ -82,6 +84,10 @@ public class WaterTankController : MonoBehaviour
             other.gameObject.GetComponent<Renderer>().enabled = true;
             // placeOnReference_ = true;
         }
+        if(other.gameObject.layer == LayerMask.NameToLayer("fountain") && grabbed_){
+            //Reload
+            gameObject.GetComponent<AudioSource>().Play();
+        }
     }
 
     void OnTriggerStay(Collider other)
@@ -100,7 +106,10 @@ public class WaterTankController : MonoBehaviour
             other.gameObject.GetComponent<Renderer>().enabled = false;
             // placeOnReference_ = false;
         }
-        
+        if(other.gameObject.layer == LayerMask.NameToLayer("fountain") && grabbed_){
+            gameObject.GetComponent<AudioSource>().Stop();
+        }
+
     }
 
     public void Reload(float reloadAmount){
