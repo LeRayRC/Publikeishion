@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject player_;
     public GameObject impactTargetFX_;
     public GameObject impacTargetSound_;
+
+    public GameObject UiGameobject_;
     
 
 
