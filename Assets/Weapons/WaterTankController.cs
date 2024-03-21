@@ -116,6 +116,9 @@ public class WaterTankController : MonoBehaviour
         if (capacityLeft_ > maxCapacity_)
         {
             capacityLeft_ = maxCapacity_;
+            if(gameObject.GetComponent<AudioSource>().isPlaying){
+                gameObject.GetComponent<AudioSource>().Stop();
+            }
         }
         else
         {

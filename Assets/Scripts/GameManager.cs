@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetScore(){
         currentScore_ = 0;
-        highestScore_ = 0;
-        highestScoreText_.text = highestScore_.ToString();
         currentScoreText_.text = currentScore_.ToString();
     }
 }
