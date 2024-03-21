@@ -26,6 +26,9 @@ public class BulletController : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if(other.gameObject.layer == LayerMask.NameToLayer("target")){
             //Reload
+            TargetController TC_ = other.gameObject.GetComponent<TargetController>();
+            GameManager.instance.UpdateScore(TC_.score_);
+
             GameManager.instance.spawnTarget();
 
             //Spawn FX at target
