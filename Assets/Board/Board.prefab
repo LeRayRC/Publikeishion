@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8014348991285595651}
   - component: {fileID: 717308661689814060}
+  - component: {fileID: 588774870326058169}
   m_Layer: 7
   m_Name: Board
   m_TagString: Untagged
@@ -223,6 +224,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: -0.2}
+--- !u!114 &588774870326058169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716169196563897926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1462eccc4d6734bafc60de8db2ae0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score_: 100
 --- !u!1 &3505808470042633414
 GameObject:
   m_ObjectHideFlags: 0
