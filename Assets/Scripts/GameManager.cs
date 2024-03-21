@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject UiGameobject_;
     
+    public uint currentScore_;
+    public uint highestScore_;
 
+    public TMP_Text currentScoreText_;
+    public TMP_Text highestScoreText_;
 
     void Awake(){
         //Check if instance already exists
@@ -41,5 +46,22 @@ public class GameManager : MonoBehaviour
         GameObject go_ = Instantiate<GameObject>(targetPrefab_, spawnTRs_[spawnSelected_].position, spawnTRs_[spawnSelected_].rotation);
         go_.transform.LookAt(player_.transform);
         lastSpawnSelected_ = spawnSelected_;
+    }
+
+    public void UpdateScore(uint score){
+        currentScore_ += score;
+        if (currentScore_ > highestScore_){
+           highestScore_ = currentScore_; 
+           highestScoreText_.text = highestScore_.ToString();
+        }
+        //Update Text
+        currentScoreText_.text = currentScore_.ToString();
+    }
+
+    public void ResetScore(){
+        currentScore_ = 0;
+        highestScore_ = 0;
+        highestScoreText_.text = highestScore_.ToString();
+        currentScoreText_.text = currentScore_.ToString();
     }
 }
