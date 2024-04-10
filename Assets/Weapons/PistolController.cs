@@ -58,7 +58,7 @@ public class PistolController : MonoBehaviour
     }
 
     public void Update(){
-        GameManager.instance.UiGameobject_.SetActive(!isGrabbed_);
+        //GameManager.instance.UiGameobject_.SetActive(!isGrabbed_);
     }
 
     private IEnumerator ShootTrail(){
