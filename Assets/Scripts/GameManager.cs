@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text currentScoreText_;
     public TMP_Text highestScoreText_;
 
+    public RectTransform MainMenuShiftedPosition_;
+    public MainMenuController menuController_;
+
     void Awake(){
         //Check if instance already exists
         if (instance == null){
