@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Microsoft.Unity.VisualStudio.Editor;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     private int lastSpawnSelected_;
     public List<Transform> spawnTRs_ = new List<Transform>();
+    public GameObject targetSpawner_;
     public GameObject targetPrefab_;
     public GameObject player_;
     public GameObject impactTargetFX_;
@@ -21,6 +23,12 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text currentScoreText_;
     public TMP_Text highestScoreText_;
+
+    public RectTransform MainMenuShiftedPosition_;
+    public MainMenuController menuController_;
+
+    public List<Sprite> controlImagesList_ = new List<Sprite>();
+    public GameObject controlImage_;
 
     void Awake(){
         //Check if instance already exists
@@ -38,14 +46,25 @@ public class GameManager : MonoBehaviour
         spawnTarget();
     }
 
+
+
     public void spawnTarget(){
+        Collider collider_ = targetSpawner_.GetComponent<Collider>();
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(collider_.bounds.min.x,collider_.bounds.max.x),
+            Random.Range(collider_.bounds.min.y,collider_.bounds.max.y),
+            Random.Range(collider_.bounds.min.z,collider_.bounds.max.z)
+        );
+
+        /*
         int spawnSelected_;
         do{
             spawnSelected_ = Random.Range(0,spawnTRs_.Count-1);
         }while(spawnSelected_ == lastSpawnSelected_);
-        GameObject go_ = Instantiate<GameObject>(targetPrefab_, spawnTRs_[spawnSelected_].position, spawnTRs_[spawnSelected_].rotation);
+        */
+        GameObject go_ = Instantiate<GameObject>(targetPrefab_, spawnPosition,Quaternion.identity);
         go_.transform.LookAt(player_.transform);
-        lastSpawnSelected_ = spawnSelected_;
+        //lastSpawnSelected_ = spawnSelected_;
     }
 
     public void UpdateScore(uint score){
@@ -60,8 +79,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetScore(){
         currentScore_ = 0;
-        highestScore_ = 0;
-        highestScoreText_.text = highestScore_.ToString();
         currentScoreText_.text = currentScore_.ToString();
     }
 }
