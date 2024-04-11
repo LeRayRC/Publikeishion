@@ -32,7 +32,7 @@ public class PistolController : MonoBehaviour
 
     public bool hasWaterTank_;
     //Init values
-    public Transform initPos_;
+     Vector3 initPos_;
     private Quaternion initRot_;
 
     public WaterTankController WaterTank_;
@@ -40,7 +40,7 @@ public class PistolController : MonoBehaviour
     
     public void Start(){
         initRot_ = gameObject.transform.rotation;
-
+        initPos_ = gameObject.transform.position;
         hasWaterTank_ = true;
         
         bodyMat_ = pistolBody_.GetComponent<MeshRenderer>().material;
@@ -110,7 +110,7 @@ public class PistolController : MonoBehaviour
     void OnRelease(SelectExitEventArgs args){
         isGrabbed_ = false;
         gameObject.transform.rotation = initRot_;
-        gameObject.transform.position = initPos_.position;
+        gameObject.transform.position = initPos_;
     }
 
     
