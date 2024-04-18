@@ -18,6 +18,7 @@ public class WaterTankTutorialIntegration : MonoBehaviour
     {
         if(tutorialController.tutorialState == TutorialController.TutorialState.TutorialState_GrabTank ||
            tutorialController.tutorialState == TutorialController.TutorialState.TutorialState_ReloadTank ||
+           tutorialController.tutorialState == TutorialController.TutorialState.TutorialState_ReleaseTank ||
            tutorialController.tutorialState == TutorialController.TutorialState.TutorialState_FinalTest || 
            GameSceneLink.instance.challengeSelected != GameHelpers.GameChallenge.GameChallenge_Tutorial){
             GetComponent<XRGrabInteractable>().enabled = true;
@@ -28,5 +29,13 @@ public class WaterTankTutorialIntegration : MonoBehaviour
 
     public void GrabbedTank(){
         tutorialController.GrabbedTank();
+    }
+
+    public void ReloadedTank(){
+        tutorialController.ReloadedTank();
+    }
+
+    public void ReleaseTank(){
+        tutorialController.ReleaseTank();
     }
 }

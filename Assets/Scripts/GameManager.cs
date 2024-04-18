@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     public GameObject creditsMenu;
     public TMP_Text playChallengeDescription;
     public bool isMenuActive;
+
+    public TutorialController tutorialController;
     void Awake(){
         //Check if instance already exists
         if (instance == null){

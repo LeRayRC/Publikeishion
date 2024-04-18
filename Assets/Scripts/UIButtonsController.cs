@@ -49,6 +49,10 @@ public class UIButtonsController : MonoBehaviour
                     "Select a challenge";
         }
     }
+
+    public void ReturnToMainMenu(){
+        SceneManager.LoadScene(0);
+    }
 }
 
 

@@ -14,6 +14,7 @@ public class TutorialController : MonoBehaviour
         TutorialState_ReloadTank,
         TutorialState_ReleaseTank,
         TutorialState_FinalTest,
+        TutorialState_Completed,
     }
 
     public TutorialState tutorialState;
@@ -26,6 +27,8 @@ public class TutorialController : MonoBehaviour
     public GameObject reloadTankCanvas;
     public GameObject releaseTankCanvas;
     public GameObject finalTestCanvas;
+    public GameObject completedCanvas;
+
 
     //State Grab Weapo
     public TMP_Text grabWeaponText;
@@ -39,13 +42,27 @@ public class TutorialController : MonoBehaviour
 
     //State Grab Tank
     public bool firstTimeGrabbedTank;
+    public bool firstTimeReloadedTank;
+    public bool firstTimeReleaseTank;
+
+    //State Final test
+
+    public TMP_Text finalTestText;
+    public float timeToStartFinalTest;
+
+    public int targetsDestroyed;
+    public int targetsToDestroy;
+
     void Start()
     {
         firstGrabbedWeapon = false;
         firstTimeGrabbedTank = false;
         firstTimeEmptyTank = false;
+        firstTimeReloadedTank = false;
+        firstTimeReleaseTank = false;
         tutorialState = TutorialState.TutorialState_GrabWeapon;
         lastTutorialState = tutorialState;
+        targetsDestroyed = 0;
     }
 
     // Update is called once per frame
@@ -61,12 +78,36 @@ public class TutorialController : MonoBehaviour
                 break;
             }
             case TutorialState.TutorialState_GrabTank:{
-                Debug.Log("Grab Tank State");
+                //Debug.Log("Grab Tank State");
                 // if(state_shootWeaponCompleted){
                 //     tutorialState = TutorialState.TutorialState_GrabTank;
                 // }
                 break;
             }
+            case TutorialState.TutorialState_ReloadTank:{
+                break;
+            }
+            case TutorialState.TutorialState_ReleaseTank: {
+                
+                break;
+            } 
+            case TutorialState.TutorialState_FinalTest: {
+                if(finalTestCanvas.activeSelf){
+                    timeToStartFinalTest -= Time.deltaTime;
+                    if(timeToStartFinalTest <= 0.0f){
+                        timeToStartFinalTest = 0.0f;
+                        GameManager.instance.spawnTarget();
+                        finalTestCanvas.SetActive(false);
+                    }
+                    finalTestText.text = "Final Test: \n\n Shoot the targets!!! \n Starts in " + (int)timeToStartFinalTest + " seconds";
+                }else{
+                    if(targetsDestroyed >= targetsToDestroy){
+                        StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_Completed));
+                    }
+                }
+                break;
+            }
+
         }
         
     }
@@ -77,7 +118,7 @@ public class TutorialController : MonoBehaviour
             yield return null;
         }
         weaponGrabbedTimes = 0;
-        grabWeaponText.text = "Grab the weapon and release it " + task_weaponGrabbedTimesGoal + " times.";
+        grabWeaponText.text = "Grab the weapon  " + task_weaponGrabbedTimesGoal + " more time.";
     }
 
     public IEnumerator ChangeStateWithDelay(float delay, TutorialState state){
@@ -110,6 +151,10 @@ public class TutorialController : MonoBehaviour
         }
     }
 
+    public void TargetDestroyed(){
+        targetsDestroyed++;
+    }
+
     public void EnableCanvas(TutorialState state){
         switch(state){
             case TutorialState.TutorialState_GrabWeapon:
@@ -133,6 +178,10 @@ public class TutorialController : MonoBehaviour
             } 
             case TutorialState.TutorialState_FinalTest: {
                 finalTestCanvas.SetActive(true);
+                break;
+            }
+            case TutorialState.TutorialState_Completed: {
+                completedCanvas.SetActive(true);
                 break;
             }
         }
@@ -170,6 +219,20 @@ public class TutorialController : MonoBehaviour
         if(!firstTimeGrabbedTank){
             firstTimeGrabbedTank = true;
             StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_ReloadTank));
+        }
+    }
+
+    public void ReloadedTank(){
+        if(!firstTimeReloadedTank){
+            firstTimeReloadedTank = true;
+            StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_ReleaseTank));
+        }
+    }
+
+    public void ReleaseTank(){
+        if(!firstTimeReleaseTank){
+            firstTimeReleaseTank = true;
+            StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_FinalTest));
         }
     }
 }

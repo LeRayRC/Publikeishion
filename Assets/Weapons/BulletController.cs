@@ -31,6 +31,10 @@ public class BulletController : MonoBehaviour
 
             GameManager.instance.spawnTarget();
 
+            if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+                GameManager.instance.tutorialController.TargetDestroyed();
+            }
+
             //Spawn FX at target
             GameObject go = Instantiate<GameObject>(GameManager.instance.impactTargetFX_, other.gameObject.transform.position, other.gameObject.transform.rotation);
             go.GetComponent<ParticleSystem>().Play();
