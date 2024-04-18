@@ -58,6 +58,10 @@ public class WaterTankController : MonoBehaviour
             PistolController PC_ = parentGameobject_.gameObject.GetComponent<PistolController>();
             PC_.hasWaterTank_ = false;
         }
+        if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+            WaterTankTutorialIntegration wtti = GetComponent<WaterTankTutorialIntegration>();
+            wtti.GrabbedTank();
+        }
         grabbed_ = true;
     }
 

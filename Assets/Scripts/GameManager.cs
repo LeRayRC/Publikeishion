@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         lastSpawnSelected_ = 0;
-        spawnTarget();
+        
+        //spawnTarget();
         isMenuActive = true;
     }
 
