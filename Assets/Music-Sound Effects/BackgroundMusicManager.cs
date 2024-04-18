@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackgroundMusicManager : MonoBehaviour
 {
     public AudioClip[] musicTracks;
     private AudioSource audioSource;
     private int currentTrackIndex = 0;
+    public Slider volumeSlider;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         PlayNextTrack();
+        Debug.Log("Volume = " + audioSource.volume);
     }
 
     private void Update()
     {
+        audioSource.volume = volumeSlider.value;
+
         if (!audioSource.isPlaying)
         {
             PlayNextTrack();
@@ -38,6 +43,9 @@ public class BackgroundMusicManager : MonoBehaviour
 
         // Cambia la pista de audio y reproduce
         audioSource.clip = musicTracks[currentTrackIndex];
+
+        //Ajusta el volumen según el valor del slider del menú settings
+
         audioSource.Play();
     }
 }
