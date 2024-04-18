@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +29,17 @@ public class GameManager : MonoBehaviour
     public List<Sprite> controlImagesList_ = new List<Sprite>();
     public GameObject controlImage_;
 
+    public GameHelpers.GameMenu currentActiveMenu;
+    public GameHelpers.GameMenu previousActiveMenu;
+
+    public GameObject playMenu;
+    public GameObject controlsMenu;
+    public GameObject settingsMenu;
+    public GameObject creditsMenu;
+    public TMP_Text playChallengeDescription;
+    public bool isMenuActive;
+
+    public TutorialController tutorialController;
     void Awake(){
         //Check if instance already exists
         if (instance == null){
@@ -38,15 +48,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
         lastSpawnSelected_ = 0;
-        spawnTarget();
+        
+        //spawnTarget();
+        isMenuActive = true;
     }
 
-
+    
 
     public void spawnTarget(){
         Collider collider_ = targetSpawner_.GetComponent<Collider>();
@@ -80,5 +92,53 @@ public class GameManager : MonoBehaviour
     public void ResetScore(){
         currentScore_ = 0;
         currentScoreText_.text = currentScore_.ToString();
+    }
+
+    public void SetActiveMenu(GameHelpers.GameMenu menu){
+        previousActiveMenu = currentActiveMenu;
+        DisableMenu(previousActiveMenu);
+        switch(menu){
+            case GameHelpers.GameMenu.GameMenu_PlayMenu:{
+                currentActiveMenu = GameHelpers.GameMenu.GameMenu_PlayMenu;                
+                playMenu.SetActive(true);
+                break;
+            }
+            case GameHelpers.GameMenu.GameMenu_ControlsMenu:{
+                currentActiveMenu = GameHelpers.GameMenu.GameMenu_ControlsMenu;
+                controlsMenu.SetActive(true);
+                break;
+            }
+            case GameHelpers.GameMenu.GameMenu_SettingsMenu:{
+                currentActiveMenu = GameHelpers.GameMenu.GameMenu_SettingsMenu;
+                settingsMenu.SetActive(true);
+                break;
+            }
+            case GameHelpers.GameMenu.GameMenu_CreditsMenu:{
+                currentActiveMenu = GameHelpers.GameMenu.GameMenu_CreditsMenu;
+                creditsMenu.SetActive(true);
+                break;
+            }
+        }
+    }
+
+    public void DisableMenu(GameHelpers.GameMenu menu){
+        switch(menu){
+            case GameHelpers.GameMenu.GameMenu_PlayMenu:{
+                playMenu.SetActive(false);
+                break;
+            }
+            case GameHelpers.GameMenu.GameMenu_ControlsMenu:{
+                controlsMenu.SetActive(false);
+                break;
+            }
+            case GameHelpers.GameMenu.GameMenu_SettingsMenu:{
+                settingsMenu.SetActive(false);
+                break;
+            }
+            case GameHelpers.GameMenu.GameMenu_CreditsMenu:{
+                creditsMenu.SetActive(false);
+                break;
+            }
+        }
     }
 }

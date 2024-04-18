@@ -16,17 +16,16 @@ public class MainMenuController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void ActivateShiftPosition(RectTransform finalRectTransform){
+    public void InteractMainMenu(RectTransform finalRectTransform, GameHelpers.GameMenu menu){
         if(!shifted){
             StartCoroutine(ShiftPosition(finalRectTransform));
-        }else{
-            StartCoroutine(ShiftPosition(initRectTransform_));
         }
+        GameManager.instance.SetActiveMenu(menu);
     }
 
     public IEnumerator ShiftPosition(RectTransform finalRectTransform){
         while(Vector3.Distance(rectTransform_.position, finalRectTransform.position) > 0.01f){
-            rectTransform_.position = Vector3.Lerp(rectTransform_.position,finalRectTransform.position,0.01f);
+            rectTransform_.position = Vector3.Lerp(rectTransform_.position,finalRectTransform.position,0.05f);
             yield return null;
         }
     }

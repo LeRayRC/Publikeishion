@@ -58,6 +58,10 @@ public class WaterTankController : MonoBehaviour
             PistolController PC_ = parentGameobject_.gameObject.GetComponent<PistolController>();
             PC_.hasWaterTank_ = false;
         }
+        if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+            WaterTankTutorialIntegration wtti = GetComponent<WaterTankTutorialIntegration>();
+            wtti.GrabbedTank();
+        }
         grabbed_ = true;
     }
 
@@ -69,6 +73,11 @@ public class WaterTankController : MonoBehaviour
 
             PistolController PC_ = parentGameobject_.gameObject.GetComponent<PistolController>();
             PC_.hasWaterTank_ = true;
+
+            if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+                WaterTankTutorialIntegration wtti = GetComponent<WaterTankTutorialIntegration>();
+                wtti.ReleaseTank();
+            }
         }else{
             gameObject.transform.SetParent(null);
         }
@@ -109,7 +118,6 @@ public class WaterTankController : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("fountain") && grabbed_){
             gameObject.GetComponent<AudioSource>().Stop();
         }
-
     }
 
     public void Reload(float reloadAmount){
@@ -118,6 +126,10 @@ public class WaterTankController : MonoBehaviour
             capacityLeft_ = maxCapacity_;
             if(gameObject.GetComponent<AudioSource>().isPlaying){
                 gameObject.GetComponent<AudioSource>().Stop();
+            }
+            if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+                WaterTankTutorialIntegration wtti = GetComponent<WaterTankTutorialIntegration>();
+                wtti.ReloadedTank();
             }
         }
         else

@@ -37,11 +37,14 @@ public class PistolController : MonoBehaviour
 
     public WaterTankController WaterTank_;
 
+    public bool canShoot;
+
     
     public void Start(){
         initRot_ = gameObject.transform.rotation;
         initPos_ = gameObject.transform.position;
         hasWaterTank_ = true;
+        canShoot = true;
         
         bodyMat_ = pistolBody_.GetComponent<MeshRenderer>().material;
         bodyMat_.color = fullLoadedColor_;
@@ -76,35 +79,46 @@ public class PistolController : MonoBehaviour
     }
 
     private void Shoot(InputAction.CallbackContext obj){
-        if(isGrabbed_ && hasWaterTank_){
-            if(WaterTank_.capacityLeft_ >= shotCost_){
-                GameObject go_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
-                Rigidbody rb_ = go_.GetComponent<Rigidbody>();
-                rb_.AddForce(shootTR_.forward * shootForce_,ForceMode.Impulse);
-                WaterTank_.capacityLeft_-= shotCost_;
-                WaterTank_.loadPercentage_ = WaterTank_.capacityLeft_ / WaterTank_.maxCapacity_;
+        if(canShoot){
+            if(isGrabbed_ && hasWaterTank_){
+                if(WaterTank_.capacityLeft_ >= shotCost_){
+                    GameObject go_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
+                    Rigidbody rb_ = go_.GetComponent<Rigidbody>();
+                    rb_.AddForce(shootTR_.forward * shootForce_,ForceMode.Impulse);
+                    WaterTank_.capacityLeft_-= shotCost_;
+                    WaterTank_.loadPercentage_ = WaterTank_.capacityLeft_ / WaterTank_.maxCapacity_;
 
-                WaterTank_.SetTankColor();
-                //Trigger Sound
-                audioSource_.clip = soundTracks_[0];
-                audioSource_.Play();
+                    WaterTank_.SetTankColor();
+                    //Trigger Sound
+                    audioSource_.clip = soundTracks_[0];
+                    audioSource_.Play();
 
 
-                // GameObject go2_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
-                // Rigidbody rb2_ = go2_.GetComponent<Rigidbody>();
-                // rb2_.AddForce(shootTR_.forward * shootForce_, ForceMode.Impulse);
-                // Debug.Log("Trail");
+                    // GameObject go2_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
+                    // Rigidbody rb2_ = go2_.GetComponent<Rigidbody>();
+                    // rb2_.AddForce(shootTR_.forward * shootForce_, ForceMode.Impulse);
+                    // Debug.Log("Trail");
 
-                //StartCoroutine(ShootTrail());
-            }else{
-                audioSource_.clip = soundTracks_[1];
-                audioSource_.Play();
+                    //StartCoroutine(ShootTrail());
+                }else{
+                    if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+                        WeaponTutorialIntegration wti = GetComponent<WeaponTutorialIntegration>();
+                        wti.EmptyTank();
+                    }
+                    audioSource_.clip = soundTracks_[1];
+                    audioSource_.Play();
+                }
             }
         }
     }
 
     void OnGrabbed(SelectEnterEventArgs args){
         isGrabbed_ = true;
+
+        if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+            WeaponTutorialIntegration wti = GetComponent<WeaponTutorialIntegration>();
+            wti.WeaponGrabbed();
+        }
     }
 
     void OnRelease(SelectExitEventArgs args){
