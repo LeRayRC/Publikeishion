@@ -102,7 +102,7 @@ public class TutorialController : MonoBehaviour
                     finalTestText.text = "Final Test: \n\n Shoot the targets!!! \n Starts in " + (int)timeToStartFinalTest + " seconds";
                 }else{
                     if(targetsDestroyed >= targetsToDestroy){
-                        StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_Completed));
+                        StartCoroutine(ChangeStateWithDelay(0.1f, TutorialState.TutorialState_Completed));
                     }
                 }
                 break;
@@ -135,11 +135,11 @@ public class TutorialController : MonoBehaviour
     public void WeaponGrabbed(){
         if(!firstGrabbedWeapon){
             firstGrabbedWeapon = true;
-            StartCoroutine(GrabWeapon_SecondScreen(1.0f));
+            StartCoroutine(GrabWeapon_SecondScreen(0.1f));
         }else{
             weaponGrabbedTimes++;
             if(weaponGrabbedTimes == task_weaponGrabbedTimesGoal){
-                StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_ShotWeapon));
+                StartCoroutine(ChangeStateWithDelay(0.1f, TutorialState.TutorialState_GrabTank));
             }
         }
     }
@@ -147,7 +147,7 @@ public class TutorialController : MonoBehaviour
     public void EmptyTank(){
         if(!firstTimeEmptyTank){
             firstTimeEmptyTank = true;
-            StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_GrabTank));
+            StartCoroutine(ChangeStateWithDelay(0.1f, TutorialState.TutorialState_GrabTank));
         }
     }
 
@@ -218,21 +218,21 @@ public class TutorialController : MonoBehaviour
     public void GrabbedTank(){
         if(!firstTimeGrabbedTank){
             firstTimeGrabbedTank = true;
-            StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_ReloadTank));
+            StartCoroutine(ChangeStateWithDelay(0.1f, TutorialState.TutorialState_ReloadTank));
         }
     }
 
     public void ReloadedTank(){
         if(!firstTimeReloadedTank){
             firstTimeReloadedTank = true;
-            StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_ReleaseTank));
+            StartCoroutine(ChangeStateWithDelay(0.1f, TutorialState.TutorialState_ReleaseTank));
         }
     }
 
     public void ReleaseTank(){
         if(!firstTimeReleaseTank){
             firstTimeReleaseTank = true;
-            StartCoroutine(ChangeStateWithDelay(1.5f, TutorialState.TutorialState_FinalTest));
+            StartCoroutine(ChangeStateWithDelay(0.1f, TutorialState.TutorialState_FinalTest));
         }
     }
 }

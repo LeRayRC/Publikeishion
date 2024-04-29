@@ -134,10 +134,10 @@ public class PistolController : MonoBehaviour
 
                     //StartCoroutine(ShootTrail());
                 }else{
-                    if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
-                        WeaponTutorialIntegration wti = GetComponent<WeaponTutorialIntegration>();
-                        wti.EmptyTank();
-                    }
+                    // if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
+                    //     WeaponTutorialIntegration wti = GetComponent<WeaponTutorialIntegration>();
+                    //     wti.EmptyTank();
+                    // }
                     audioSource_.clip = soundTracks_[1];
                     audioSource_.Play();
                 }
