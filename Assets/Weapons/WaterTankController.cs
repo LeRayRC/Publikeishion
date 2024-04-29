@@ -25,7 +25,7 @@ public class WaterTankController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        capacityLeft_ = maxCapacity_;
+        //capacityLeft_ = maxCapacity_;
         loadPercentage_ = capacityLeft_ / maxCapacity_;
         bodyMat_ = gameObject.GetComponent<Renderer>().material;
         // placeOnReference_ = true;
@@ -33,6 +33,7 @@ public class WaterTankController : MonoBehaviour
         grabInteractable_ = GetComponent<XRGrabInteractable>();
         grabInteractable_.selectEntered.AddListener(OnGrabbed);
         grabInteractable_.selectExited.AddListener(OnRelease);
+        SetTankColor();
     }
 
     // Update is called once per frame

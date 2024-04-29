@@ -39,8 +39,28 @@ public class PistolController : MonoBehaviour
 
     public bool canShoot;
 
-    
+    public GameObject gunTrigger_;
+    private float triggerAnimTimer_;
+    public float triggerAnimMaxTime_;
+
+    public float grabVibrationIntensity;
+    public float grabVibrationDuration;
+
+
+    public GameObject bodyPart1;
+    public GameObject bodyPart2;
+
+    private Material bodyMaterial1;
+    private Material bodyMaterial2;
+
+    public bool isHovered_;
+
+    public Animator animator_;
     public void Start(){
+
+        bodyMaterial1 = bodyPart1.GetComponent<MeshRenderer>().material;
+        bodyMaterial2 = bodyPart2.GetComponent<MeshRenderer>().material;
+
         initRot_ = gameObject.transform.rotation;
         initPos_ = gameObject.transform.position;
         hasWaterTank_ = true;
@@ -61,7 +81,17 @@ public class PistolController : MonoBehaviour
     }
 
     public void Update(){
+        if(isGrabbed_ || isHovered_){
+            bodyMaterial1.color = Color.white;
+            bodyMaterial2.color = Color.white;
+        }else{
+            bodyMaterial1.color = new Color(0.3f, 0.3f, 0.3f, 1.0f);
+            bodyMaterial2.color = new Color(0.3f, 0.3f, 0.3f, 1.0f);
+        }
         //GameManager.instance.UiGameobject_.SetActive(!isGrabbed_);
+        if(animator_.GetCurrentAnimatorStateInfo(0).IsName("Shoot")){
+            animator_.SetBool("Pressed",false);
+        }
     }
 
     private IEnumerator ShootTrail(){
@@ -77,8 +107,11 @@ public class PistolController : MonoBehaviour
             yield return null;
         }
     }
-
+    
     private void Shoot(InputAction.CallbackContext obj){
+        if(isGrabbed_){
+            animator_.SetBool("Pressed",true);
+        }
         if(canShoot){
             if(isGrabbed_ && hasWaterTank_){
                 if(WaterTank_.capacityLeft_ >= shotCost_){
@@ -110,6 +143,18 @@ public class PistolController : MonoBehaviour
                 }
             }
         }
+        // if (triggerAnimTimer_ < triggerAnimMaxTime_)
+        // {
+        //     triggerAnimTimer_ += Time.deltaTime;
+        //     if (triggerAnimTimer_ < (triggerAnimMaxTime_ * 0.5))
+        //     {
+        //         gunTrigger_.transform.position += gunTrigger_.transform.right;
+        //     }
+        //     else
+        //     {
+        //         gunTrigger_.transform.position -= gunTrigger_.transform.right;
+        //     }
+        // }
     }
 
     void OnGrabbed(SelectEnterEventArgs args){
@@ -118,6 +163,12 @@ public class PistolController : MonoBehaviour
         if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
             WeaponTutorialIntegration wti = GetComponent<WeaponTutorialIntegration>();
             wti.WeaponGrabbed();
+        }
+
+        //Add vibration
+        HapticWeaponController hwc = GetComponent<HapticWeaponController>();
+        if(null != hwc){
+            hwc.VibrateController(HapticWeaponController.ControllerSelected.Right, grabVibrationIntensity, grabVibrationDuration);
         }
     }
 

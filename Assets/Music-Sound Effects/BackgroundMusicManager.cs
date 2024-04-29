@@ -19,11 +19,16 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private void Update()
     {
-        audioSource.volume = volumeSlider.value;
+        if(audioSource != null){
 
-        if (!audioSource.isPlaying)
-        {
-            PlayNextTrack();
+            if(volumeSlider != null){
+                audioSource.volume = volumeSlider.value;
+            }
+
+            if (!audioSource.isPlaying)
+            {
+                PlayNextTrack();
+            }
         }
     }
 
@@ -44,7 +49,7 @@ public class BackgroundMusicManager : MonoBehaviour
         // Cambia la pista de audio y reproduce
         audioSource.clip = musicTracks[currentTrackIndex];
 
-        //Ajusta el volumen según el valor del slider del menú settings
+        //Ajusta el volumen segï¿½n el valor del slider del menï¿½ settings
 
         audioSource.Play();
     }
