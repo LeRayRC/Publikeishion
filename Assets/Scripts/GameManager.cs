@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public GameObject controlsMenu;
     public GameObject settingsMenu;
     public GameObject creditsMenu;
+    public GameObject navigationMenu;
     public TMP_Text playChallengeDescription;
     public bool isMenuActive;
 

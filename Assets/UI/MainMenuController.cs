@@ -18,9 +18,10 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     public void InteractMainMenu(RectTransform finalRectTransform, GameHelpers.GameMenu menu){
         if(!shifted){
-            StartCoroutine(ShiftPosition(finalRectTransform));
+            gameObject.SetActive(false);
         }
         GameManager.instance.SetActiveMenu(menu);
+        GameManager.instance.navigationMenu.SetActive(true);
     }
 
     public IEnumerator ShiftPosition(RectTransform finalRectTransform){
