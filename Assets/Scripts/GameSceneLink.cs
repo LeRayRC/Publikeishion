@@ -7,10 +7,6 @@ public class GameSceneLink : MonoBehaviour
     public static GameSceneLink instance = null;
     // Start is called before the first frame update
     public GameHelpers.GameChallenge challengeSelected;
-    void Start()
-    {
-        
-    }
 
     void Awake(){
         //Check if instance already exists

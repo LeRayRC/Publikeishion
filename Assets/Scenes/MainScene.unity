@@ -10562,7 +10562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: 0
-  challenge: 2
+  challenge: 0
 --- !u!114 &1389126322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18215,7 +18215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: 0
-  challenge: 2
+  challenge: 1
 --- !u!114 &1712246890
 MonoBehaviour:
   m_ObjectHideFlags: 0

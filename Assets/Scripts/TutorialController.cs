@@ -66,7 +66,7 @@ public class TutorialController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
+    public void CustomUpdate(){
         switch(tutorialState){
             case TutorialState.TutorialState_GrabWeapon:
                 
