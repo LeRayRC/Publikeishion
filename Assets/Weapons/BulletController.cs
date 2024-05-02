@@ -6,8 +6,6 @@ public class BulletController : MonoBehaviour
 {
     public float liveTime_;
     public GameObject particlesPrefab_;
-    Vector3 particlesScale_;
-    // Start is called before the first frame update
     void Start()
     {
         GameObject go = Instantiate<GameObject>(particlesPrefab_, gameObject.transform.position, gameObject.transform.rotation);
@@ -17,24 +15,19 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject,liveTime_);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.layer == LayerMask.NameToLayer("target")){
             //Reload
             TargetController TC_ = other.gameObject.GetComponent<TargetController>();
-            GameManager.instance.UpdateScore(TC_.score_);
-
             GameManager.instance.spawnTarget();
 
             if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
                 GameManager.instance.tutorialController.TargetDestroyed();
             }
 
+            GameManager.instance.gameStats_.ShotAimed();
+            GameManager.instance.gameStats_.AddScore(TC_.score_);
             //Spawn FX at target
             GameObject go = Instantiate<GameObject>(GameManager.instance.impactTargetFX_, other.gameObject.transform.position, other.gameObject.transform.rotation);
             go.GetComponent<ParticleSystem>().Play();

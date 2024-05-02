@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameDirector : MonoBehaviour
@@ -7,10 +8,9 @@ public class GameDirector : MonoBehaviour
     public GameObject tutorial_menus;
     public GameObject aim_menus;
     public GameObject survival_menus;
-    public GameObject tutorial_obj;
 
-
-    TutorialController tutorial_;
+    public GameObject scoreBoard_;
+    
     AimGameMode aimGameMode_;
     SurvivalGameMode survivalGameMode_;
 
@@ -21,10 +21,9 @@ public class GameDirector : MonoBehaviour
         tutorial_menus.SetActive(false);
         aim_menus.SetActive(false);
         survival_menus.SetActive(false);
-        tutorial_ = tutorial_obj.GetComponent<TutorialController>();
+        scoreBoard_.SetActive(false);
         aimGameMode_ = GetComponent<AimGameMode>();
         survivalGameMode_ = GetComponent<SurvivalGameMode>();
-        
     }
 
     // Update is called once per frame
@@ -33,45 +32,51 @@ public class GameDirector : MonoBehaviour
         
         switch(GameSceneLink.instance.challengeSelected){
             case GameHelpers.GameChallenge.GameChallenge_Tutorial:
-                if (!tutorial_menus)
+                Debug.Log("activating tutorial");
+                if (!tutorial_menus.activeSelf)
                 {
                     tutorial_menus.SetActive(true);
                 }
-                if (aim_menus)
+                if (aim_menus.activeSelf)
                 {
                     aim_menus.SetActive(false);
                 }
-                if (survival_menus)
+                if (survival_menus.activeSelf)
                 {
                     survival_menus.SetActive(false);
                 }
-                tutorial_.CustomUpdate();
+                GameManager.instance.tutorialController.CustomUpdate();
                 break;
             case GameHelpers.GameChallenge.GameChallenge_Aim:
-                if (tutorial_menus)
+                if (tutorial_menus.activeSelf)
                 {
                     tutorial_menus.SetActive(false);
                 }
-                if (!aim_menus)
+                if (!aim_menus.activeSelf && aimGameMode_.initDelay_ > 0.0f)
                 {
                     aim_menus.SetActive(true);
                 }
-                if (survival_menus)
+                if (survival_menus.activeSelf)
                 {
                     survival_menus.SetActive(false);
                 }
-                aimGameMode_.CustomUpdate(); ;
+                aimGameMode_.CustomUpdate();
+                if(aimGameMode_.isFinished_){
+                    //Retrieve stats
+                    scoreBoard_.SetActive(true);
+                    GameManager.instance.gameStats_.UpdateStats();
+                }
                 break;
             case GameHelpers.GameChallenge.GameChallenge_Survive:
-                if (tutorial_menus)
+                if (tutorial_menus.activeSelf)
                 {
                     tutorial_menus.SetActive(false);
                 }
-                if (aim_menus)
+                if (aim_menus.activeSelf)
                 {
                     aim_menus.SetActive(false);
                 }
-                if (!survival_menus)
+                if (!survival_menus.activeSelf)
                 {
                     survival_menus.SetActive(true);
                 }

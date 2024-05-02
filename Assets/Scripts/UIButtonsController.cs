@@ -9,9 +9,9 @@ public class UIButtonsController : MonoBehaviour
 {
     public GameHelpers.GameMenu menu;
     public GameHelpers.GameChallenge challenge;
-    public void ResetScore(){
-        GameManager.instance.ResetScore();
-    }
+    // public void ResetScore(){
+        // GameManager.instance.ResetScore();
+    // }
 
     public void InteractWithMainMenu(){
         GameManager.instance.menuController_.InteractMainMenu(GameManager.instance.MainMenuShiftedPosition_, menu);
@@ -25,7 +25,7 @@ public class UIButtonsController : MonoBehaviour
         switch(challenge){
             case GameHelpers.GameChallenge.GameChallenge_Aim:
                 GameManager.instance.playChallengeDescription.text = 
-                    "How many targets can you destroy in 1 minutes?";
+                    "How many targets can you destroy?";
                 GameSceneLink.instance.challengeSelected = GameHelpers.GameChallenge.GameChallenge_Aim;
                 break;
             case GameHelpers.GameChallenge.GameChallenge_Survive:

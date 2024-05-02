@@ -125,7 +125,8 @@ public class PistolController : MonoBehaviour
                     //Trigger Sound
                     audioSource_.clip = soundTracks_[0];
                     audioSource_.Play();
-
+                    
+                    GameManager.instance.gameStats_.ShotMade();
 
                     // GameObject go2_ = Instantiate<GameObject>(bulletPrefab_, shootTR_.position, shootTR_.rotation);
                     // Rigidbody rb2_ = go2_.GetComponent<Rigidbody>();

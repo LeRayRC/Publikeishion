@@ -3325,7 +3325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WORK IN PROGRESS
+  m_text: "MADE BY:\n\nCARLOS GARC\xCDA\nLUIS MIGUEL JIM\xC9NEZ\nENRIQUE L\xD3PEZ"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3486,7 +3486,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017154853}
+      - m_Target: {fileID: 436729200}
         m_TargetAssemblyTypeName: UIButtonsController, Assembly-CSharp
         m_MethodName: InteractWithMainMenu
         m_Mode: 1
@@ -3548,7 +3548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb13ae68943d9f40bcf449d98d721be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: 0
+  menu: 3
   challenge: 0
 --- !u!1 &438201056
 GameObject:
@@ -7277,7 +7277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb13ae68943d9f40bcf449d98d721be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: 0
+  menu: 1
   challenge: 0
 --- !u!1 &967546580
 GameObject:
@@ -8361,7 +8361,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017154853}
+      - m_Target: {fileID: 1114272934}
         m_TargetAssemblyTypeName: UIButtonsController, Assembly-CSharp
         m_MethodName: InteractWithMainMenu
         m_Mode: 1
@@ -8423,7 +8423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb13ae68943d9f40bcf449d98d721be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: 0
+  menu: 2
   challenge: 0
 --- !u!1 &1153940489
 GameObject:
@@ -10607,7 +10607,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1848144672}
+      - m_Target: {fileID: 1389126321}
         m_TargetAssemblyTypeName: UIButtonsController, Assembly-CSharp
         m_MethodName: SelectChallange
         m_Mode: 1
@@ -15947,6 +15947,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6352062631426523824, guid: 659eb90a4c93c73439fdc8e762ec5731, type: 3}
   m_PrefabInstance: {fileID: 228685044426339877}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1440824780 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 553192700591846420, guid: 659eb90a4c93c73439fdc8e762ec5731, type: 3}
+  m_PrefabInstance: {fileID: 228685044426339877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb13ae68943d9f40bcf449d98d721be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1451741488
 GameObject:
   m_ObjectHideFlags: 0
@@ -16120,10 +16131,12 @@ MonoBehaviour:
   impactTargetFX_: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
   impacTargetSound_: {fileID: 0}
   UiGameobject_: {fileID: 953636834}
-  currentScore_: 0
-  highestScore_: 0
-  currentScoreText_: {fileID: 859424597}
-  highestScoreText_: {fileID: 604503807}
+  gameStats_:
+    shotsMade_: 0
+    shotsAimed_: 0
+    score_: 0
+    scoreText_: {fileID: 0}
+    acurracyText_: {fileID: 0}
   MainMenuShiftedPosition_: {fileID: 732943931}
   menuController_: {fileID: 712102108}
   controlImagesList_:
@@ -18260,7 +18273,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1848144672}
+      - m_Target: {fileID: 1712246889}
         m_TargetAssemblyTypeName: UIButtonsController, Assembly-CSharp
         m_MethodName: SelectChallange
         m_Mode: 1
@@ -20301,7 +20314,11 @@ PrefabInstance:
     - target: {fileID: 4543475043635783964, guid: 659eb90a4c93c73439fdc8e762ec5731, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1017154853}
+      objectReference: {fileID: 1440824780}
+    - target: {fileID: 4543475043635783964, guid: 659eb90a4c93c73439fdc8e762ec5731, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InteractWithMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 6352062631426523824, guid: 659eb90a4c93c73439fdc8e762ec5731, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -17,11 +17,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject UiGameobject_;
     
-    public uint currentScore_;
-    public uint highestScore_;
-
-    public TMP_Text currentScoreText_;
-    public TMP_Text highestScoreText_;
+    [SerializeField]
+    public GameStats gameStats_ = new GameStats();
 
     public RectTransform MainMenuShiftedPosition_;
     public MainMenuController menuController_;
@@ -41,6 +38,8 @@ public class GameManager : MonoBehaviour
     public bool isMenuActive;
 
     public TutorialController tutorialController;
+
+    
     void Awake(){
         //Check if instance already exists
         if (instance == null){
@@ -54,7 +53,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         lastSpawnSelected_ = 0;
-        
+        gameStats_.ResetStats();
         //spawnTarget();
         isMenuActive = true;
     }
@@ -80,20 +79,20 @@ public class GameManager : MonoBehaviour
         //lastSpawnSelected_ = spawnSelected_;
     }
 
-    public void UpdateScore(uint score){
-        currentScore_ += score;
-        if (currentScore_ > highestScore_){
-           highestScore_ = currentScore_; 
-           highestScoreText_.text = highestScore_.ToString();
-        }
-        //Update Text
-        currentScoreText_.text = currentScore_.ToString();
-    }
+    // public void UpdateScore(uint score){
+    //     currentScore_ += score;
+    //     if (currentScore_ > highestScore_){
+    //        highestScore_ = currentScore_; 
+    //        highestScoreText_.text = highestScore_.ToString();
+    //     }
+    //     //Update Text
+    //     currentScoreText_.text = currentScore_.ToString();
+    // }
 
-    public void ResetScore(){
-        currentScore_ = 0;
-        currentScoreText_.text = currentScore_.ToString();
-    }
+    // public void ResetScore(){
+    //     currentScore_ = 0;
+    //     currentScoreText_.text = currentScore_.ToString();
+    // }
 
     public void SetActiveMenu(GameHelpers.GameMenu menu){
         previousActiveMenu = currentActiveMenu;
