@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9057206284774627279}
   - component: {fileID: 4680292422701121263}
   m_Layer: 7
-  m_Name: Cylinder (8)
+  m_Name: CylinderChange_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0.01, y: -0.021999955, z: 0.07}
-  m_LocalScale: {x: 0.40749735, y: 0.025468584, z: 0.40749732}
+  m_LocalScale: {x: 0.46668866, y: 0.029168041, z: 0.4666886}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8014348991285595651}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1063143410368898683}
   - component: {fileID: 8392859256386108565}
   m_Layer: 7
-  m_Name: Cylinder (6)
+  m_Name: CylinderChange_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,8 +177,9 @@ GameObject:
   - component: {fileID: 8014348991285595651}
   - component: {fileID: 717308661689814060}
   - component: {fileID: 588774870326058169}
+  - component: {fileID: 4434244704634834300}
   m_Layer: 7
-  m_Name: Board
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +237,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1462eccc4d6734bafc60de8db2ae0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_: 100
+  smallTargetScore_: 200
+  mediumTargetScore_: 100
+  bigTargetScore_: 50
+  smallTargetColor_: {r: 0, g: 0.25945425, b: 1, a: 0}
+  mediumTargetColor_: {r: 1, g: 0, b: 0, a: 0}
+  bigTargetColor_: {r: 0.25314426, g: 1, b: 0, a: 0}
+  score_: 0
+  movableTarget_: 0
+  cylinder1_: {fileID: 208282006283515409}
+  cylinder2_: {fileID: 31054108604698100}
+  sizeThresholds: {x: 5, y: 8}
+  sizes_: {x: 0.7, y: 2, z: 3}
+  movement_probability: 5
+  movableTargetScoreMultiplier_: 2
+--- !u!114 &4434244704634834300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716169196563897926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 1
+  m_Method: 0
+  m_Duration: 1
+  m_MaxSpeed: 10
+  m_EasingMode: 0
+  m_AlignmentMode: 0
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
 --- !u!1 &3505808470042633414
 GameObject:
   m_ObjectHideFlags: 0

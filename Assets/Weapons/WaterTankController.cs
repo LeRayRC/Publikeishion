@@ -26,6 +26,9 @@ public class WaterTankController : MonoBehaviour
     void Start()
     {
         //capacityLeft_ = maxCapacity_;
+        if(GameSceneLink.instance.challengeSelected != GameHelpers.GameChallenge.GameChallenge_Tutorial){
+            capacityLeft_ = maxCapacity_;
+        }
         loadPercentage_ = capacityLeft_ / maxCapacity_;
         bodyMat_ = gameObject.GetComponent<Renderer>().material;
         // placeOnReference_ = true;

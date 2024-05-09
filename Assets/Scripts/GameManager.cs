@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Splines;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,11 @@ public class GameManager : MonoBehaviour
 
     public TutorialController tutorialController;
 
+    public List<SplineContainer> targetsSplines_ = new List<SplineContainer>();
+
+
+
+
     
     void Awake(){
         //Check if instance already exists
@@ -75,7 +81,8 @@ public class GameManager : MonoBehaviour
         }while(spawnSelected_ == lastSpawnSelected_);
         */
         GameObject go_ = Instantiate<GameObject>(targetPrefab_, spawnPosition,Quaternion.identity);
-        go_.transform.LookAt(player_.transform);
+        go_.GetComponent<TargetController>().init();
+        
         //lastSpawnSelected_ = spawnSelected_;
     }
 
