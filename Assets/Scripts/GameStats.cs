@@ -6,7 +6,7 @@ using TMPro;
 public class GameStats {
     public float shotsMade_;
     public float shotsAimed_;
-    public uint score_;
+    public float score_;
 
     public TMP_Text scoreText_;
     public TMP_Text acurracyText_;
@@ -27,13 +27,13 @@ public class GameStats {
         shotsAimed_++;
     }
 
-    public void AddScore(uint score){
+    public void AddScore(float score){
         score_ += score;
     }
 
     public void UpdateStats(){
-        scoreText_.text = score_.ToString();
-        acurracyText_.text = GetAccuracy().ToString() + "%";
+        scoreText_.text = Mathf.FloorToInt(score_).ToString();
+        acurracyText_.text = GetAccuracy().ToString("F2") + "%";
     }
 
     public void ResetStats(){
