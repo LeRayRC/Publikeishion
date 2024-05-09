@@ -8656,8 +8656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime_: 0
-  initDelay_: 10
-  maxTime_: 90
+  initDelay_: 5
+  maxTime_: 30
   isFinished_: 0
   challengeText_: {fileID: 1972436912}
   menu_: {fileID: 788195514}
