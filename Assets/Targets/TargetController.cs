@@ -27,6 +27,9 @@ public class TargetController : MonoBehaviour
     public Vector3 sizes_ = new Vector3();
     public int movement_probability;
     public float movableTargetScoreMultiplier_;
+
+    public bool isTemporal_;
+    public float fallTimer_;
     
     enum TargetSize{
         none,
@@ -71,6 +74,24 @@ public class TargetController : MonoBehaviour
 
     public void Update(){
         transform.LookAt(GameManager.instance.player_.transform);
+
+        if(isTemporal_){
+            fallTimer_ -= Time.deltaTime;
+            if(fallTimer_ <= 0.0f){
+                Rigidbody rb_ = GetComponent<Rigidbody>();
+                if(rb_){
+                    rb_.useGravity = true;
+                    GetComponent<SplineAnimate>().enabled = false;
+                }
+            }
+
+            if(transform.position.y < GameManager.instance.player_.transform.position.y){
+                GameManager.instance.spawnTempTarget();
+
+                Destroy(gameObject,0.0f);
+            }
+        }
+
     }
 
     void SelectSpline(){

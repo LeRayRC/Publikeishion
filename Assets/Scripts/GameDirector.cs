@@ -65,6 +65,7 @@ public class GameDirector : MonoBehaviour
                     //Retrieve stats
                     scoreBoard_.SetActive(true);
                     GameManager.instance.gameStats_.UpdateStats();
+                    GameManager.instance.pistolController_.gameObject.SetActive(false);
                 }
                 break;
             case GameHelpers.GameChallenge.GameChallenge_Survive:

@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public bool isMenuActive;
 
     public TutorialController tutorialController;
+    public PistolController pistolController_;
 
     public List<SplineContainer> targetsSplines_ = new List<SplineContainer>();
 
@@ -82,6 +83,30 @@ public class GameManager : MonoBehaviour
         */
         GameObject go_ = Instantiate<GameObject>(targetPrefab_, spawnPosition,Quaternion.identity);
         go_.GetComponent<TargetController>().init();
+        
+        //lastSpawnSelected_ = spawnSelected_;
+    }
+
+    public void spawnTempTarget(){
+        Collider collider_ = targetSpawner_.GetComponent<Collider>();
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(collider_.bounds.min.x,collider_.bounds.max.x),
+            Random.Range(collider_.bounds.min.y,collider_.bounds.max.y),
+            Random.Range(collider_.bounds.min.z,collider_.bounds.max.z)
+        );
+
+        /*
+        int spawnSelected_;
+        do{
+            spawnSelected_ = Random.Range(0,spawnTRs_.Count-1);
+        }while(spawnSelected_ == lastSpawnSelected_);
+        */
+        GameObject go_ = Instantiate<GameObject>(targetPrefab_, spawnPosition,Quaternion.identity);
+        TargetController targetController_ = go_.GetComponent<TargetController>();
+        targetController_.init();
+        targetController_.isTemporal_ = true;
+
+
         
         //lastSpawnSelected_ = spawnSelected_;
     }

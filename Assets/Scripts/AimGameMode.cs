@@ -16,6 +16,9 @@ public class AimGameMode : MonoBehaviour
     public GameObject countdownCanvas_;
     public TMP_Text coundownText_;
 
+    public float internalTimer_;
+    public int newTargetProbability_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +35,18 @@ public class AimGameMode : MonoBehaviour
                 //Update menu text
                 challengeText_.text = "Destroy as many targets as you \n can in the given time \n\n" + (int)initDelay_;
                 if(initDelay_ <= 0.0f){
-                    GameManager.instance.spawnTarget();
+                    GameManager.instance.spawnTempTarget();
                     menu_.SetActive(false);
                     countdownCanvas_.SetActive(true);
                 }
             }else{
+                internalTimer_ += Time.deltaTime;
+                if(internalTimer_ >= 1.0f){
+                    internalTimer_ = 0.0f;
+                    if(Random.Range(0,10) < newTargetProbability_){
+                        GameManager.instance.spawnTempTarget();
+                    }
+                }
                 currentTime_ -= Time.deltaTime;
                 int seconds = (int)(currentTime_ % 60);
                 int minutes = (int)(currentTime_ / 60);

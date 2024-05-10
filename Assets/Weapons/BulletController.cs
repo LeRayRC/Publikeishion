@@ -20,8 +20,12 @@ public class BulletController : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("target")){
             //Reload
             TargetController TC_ = other.gameObject.GetComponent<TargetController>();
-            GameManager.instance.spawnTarget();
-
+            //if(TC_.isTemporal_){
+            //    GameManager.instance.spawnTempTarget();
+            //}else{
+            //    GameManager.instance.spawnTarget();
+            //}
+            GameManager.instance.spawnTempTarget();
             if(GameSceneLink.instance.challengeSelected == GameHelpers.GameChallenge.GameChallenge_Tutorial){
                 GameManager.instance.tutorialController.TargetDestroyed();
             }

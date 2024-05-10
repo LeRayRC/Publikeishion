@@ -178,9 +178,9 @@ GameObject:
   - component: {fileID: 717308661689814060}
   - component: {fileID: 588774870326058169}
   - component: {fileID: 4434244704634834300}
-  - component: {fileID: 3471290196044860967}
+  - component: {fileID: 4803679092409667478}
   m_Layer: 7
-  m_Name: Target
+  m_Name: TempTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,8 +252,6 @@ MonoBehaviour:
   sizes_: {x: 1, y: 2, z: 3}
   movement_probability: 5
   movableTargetScoreMultiplier_: 2
-  isTemporal_: 0
-  fallTimer_: 4
 --- !u!114 &4434244704634834300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +275,7 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
---- !u!54 &3471290196044860967
+--- !u!54 &4803679092409667478
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
