@@ -3863,6 +3863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 3
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &438201056
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,6 +4461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 3
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &539935502
 GameObject:
   m_ObjectHideFlags: 0
@@ -6159,6 +6161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fdd4c35ea714a4ab102add9b8fed7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highestScore_: 0
   challengeSelected: 3
 --- !u!4 &723089227
 Transform:
@@ -7714,6 +7717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 1
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &967546580
 GameObject:
   m_ObjectHideFlags: 0
@@ -8130,6 +8134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 1
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &1072206306
 GameObject:
   m_ObjectHideFlags: 0
@@ -8860,6 +8865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 2
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &1152340609
 GameObject:
   m_ObjectHideFlags: 0
@@ -9264,6 +9270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 2
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &1209286985
 GameObject:
   m_ObjectHideFlags: 0
@@ -10716,6 +10723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &1281896329
 GameObject:
   m_ObjectHideFlags: 0
@@ -11066,6 +11074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 1
+  gameDirector_: {fileID: 0}
 --- !u!1 &1389126319
 GameObject:
   m_ObjectHideFlags: 0
@@ -11120,6 +11129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!114 &1389126322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16694,6 +16704,7 @@ MonoBehaviour:
     score_: 0
     scoreText_: {fileID: 0}
     acurracyText_: {fileID: 0}
+    newRecordText_: {fileID: 0}
   MainMenuShiftedPosition_: {fileID: 732943931}
   menuController_: {fileID: 712102108}
   controlImagesList_:
@@ -16711,7 +16722,9 @@ MonoBehaviour:
   playChallengeDescription: {fileID: 706077142}
   isMenuActive: 0
   tutorialController: {fileID: 0}
+  pistolController_: {fileID: 0}
   targetsSplines_: []
+  targetCount_: 0
 --- !u!4 &1479136202
 Transform:
   m_ObjectHideFlags: 0
@@ -17655,6 +17668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &1532073841
 GameObject:
   m_ObjectHideFlags: 0
@@ -18140,6 +18154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &1574077823
 GameObject:
   m_ObjectHideFlags: 0
@@ -18752,7 +18767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1712246888
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18787,6 +18802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 1
+  gameDirector_: {fileID: 0}
 --- !u!114 &1712246890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19959,6 +19975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 2
+  gameDirector_: {fileID: 0}
 --- !u!1001 &1864081087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20188,6 +20205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: 0
   challenge: 0
+  gameDirector_: {fileID: 0}
 --- !u!1 &1893564231
 GameObject:
   m_ObjectHideFlags: 0
