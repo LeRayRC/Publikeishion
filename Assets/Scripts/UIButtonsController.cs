@@ -9,7 +9,8 @@ public class UIButtonsController : MonoBehaviour
 {
     public GameHelpers.GameMenu menu;
     public GameHelpers.GameChallenge challenge;
-    // public void ResetScore(){
+    
+    public GameDirector gameDirector_;    // public void ResetScore(){
         // GameManager.instance.ResetScore();
     // }
 
@@ -52,6 +53,23 @@ public class UIButtonsController : MonoBehaviour
 
     public void ReturnToMainMenu(){
         SceneManager.LoadScene(0);
+    }
+
+    public void SkipIntro(){
+        switch(challenge){
+            case GameHelpers.GameChallenge.GameChallenge_Aim:
+                Debug.Log("skipping");
+                
+                gameDirector_.GetComponent<AimGameMode>().StartChallenge();
+                break;
+            case GameHelpers.GameChallenge.GameChallenge_Survive:
+                break;
+        }
+    }
+
+
+    public void RestartLevel(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 

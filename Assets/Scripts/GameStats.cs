@@ -10,6 +10,7 @@ public class GameStats {
 
     public TMP_Text scoreText_;
     public TMP_Text acurracyText_;
+    public TMP_Text newRecordText_;
     
 
     public float GetAccuracy(){
@@ -34,6 +35,14 @@ public class GameStats {
     public void UpdateStats(){
         scoreText_.text = Mathf.FloorToInt(score_).ToString();
         acurracyText_.text = GetAccuracy().ToString("F2") + "%";
+
+        if(score_ > GameSceneLink.instance.highestScore_){
+            newRecordText_.gameObject.SetActive(true);
+            GameSceneLink.instance.highestScore_ = score_;
+            GameSceneLink.instance.SaveHighestScore(score_);
+            //New record text!
+
+        }
     }
 
     public void ResetStats(){
