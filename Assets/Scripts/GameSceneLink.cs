@@ -21,8 +21,16 @@ public class GameSceneLink : MonoBehaviour
     }
 
     void Start(){
-        highestScore_ = 0.0f;
         //Load highscore;
+        if(PlayerPrefs.HasKey("highestScore")){
+            highestScore_ = PlayerPrefs.GetFloat("highestScore");
+        }else{
+            PlayerPrefs.SetFloat("highestScore",0.0f);
+            highestScore_ =0.0f;
+        }
+    }
 
+    public void SaveHighestScore(float score){
+        PlayerPrefs.SetFloat("highestScore",score);
     }
 }

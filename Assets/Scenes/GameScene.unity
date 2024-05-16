@@ -15040,6 +15040,7 @@ MonoBehaviour:
     score_: 0
     scoreText_: {fileID: 859424597}
     acurracyText_: {fileID: 604503807}
+    newRecordText_: {fileID: 2146590875}
   MainMenuShiftedPosition_: {fileID: 0}
   menuController_: {fileID: 0}
   controlImagesList_:
@@ -18812,7 +18813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2146590874
 RectTransform:
   m_ObjectHideFlags: 0
