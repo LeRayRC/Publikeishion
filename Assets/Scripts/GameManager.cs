@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     public List<SplineContainer> targetsSplines_ = new List<SplineContainer>();
 
-
+    public int targetCount_;
 
 
     
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         lastSpawnSelected_ = 0;
         gameStats_.ResetStats();
         //spawnTarget();
+        targetCount_ = 0;
         isMenuActive = true;
     }
 
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
         GameObject go_ = Instantiate<GameObject>(targetPrefab_, spawnPosition,Quaternion.identity);
         go_.GetComponent<TargetController>().init();
         
+        targetCount_++;
         //lastSpawnSelected_ = spawnSelected_;
     }
 
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour
         targetController_.isTemporal_ = true;
 
 
-        
+        targetCount_++;
         //lastSpawnSelected_ = spawnSelected_;
     }
 

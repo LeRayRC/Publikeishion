@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameSceneLink : MonoBehaviour
 {
     public static GameSceneLink instance = null;
+    public float highestScore_;
     // Start is called before the first frame update
     public GameHelpers.GameChallenge challengeSelected;
 
@@ -17,5 +18,11 @@ public class GameSceneLink : MonoBehaviour
         }
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start(){
+        highestScore_ = 0.0f;
+        //Load highscore;
+
     }
 }

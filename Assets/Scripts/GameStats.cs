@@ -34,6 +34,12 @@ public class GameStats {
     public void UpdateStats(){
         scoreText_.text = Mathf.FloorToInt(score_).ToString();
         acurracyText_.text = GetAccuracy().ToString("F2") + "%";
+
+        if(score_ > GameSceneLink.instance.highestScore_){
+            GameSceneLink.instance.highestScore_ = score_;
+            //New record text!
+            
+        }
     }
 
     public void ResetStats(){

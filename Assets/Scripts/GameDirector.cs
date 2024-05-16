@@ -32,7 +32,6 @@ public class GameDirector : MonoBehaviour
         
         switch(GameSceneLink.instance.challengeSelected){
             case GameHelpers.GameChallenge.GameChallenge_Tutorial:
-                Debug.Log("activating tutorial");
                 if (!tutorial_menus.activeSelf)
                 {
                     tutorial_menus.SetActive(true);

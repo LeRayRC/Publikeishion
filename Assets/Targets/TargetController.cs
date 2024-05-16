@@ -86,8 +86,8 @@ public class TargetController : MonoBehaviour
             }
 
             if(transform.position.y < GameManager.instance.player_.transform.position.y){
-                GameManager.instance.spawnTempTarget();
-
+                //GameManager.instance.spawnTempTarget();
+                GameManager.instance.targetCount_--;
                 Destroy(gameObject,0.0f);
             }
         }

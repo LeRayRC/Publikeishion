@@ -38,6 +38,7 @@ public class BulletController : MonoBehaviour
             go.GetComponent<AudioSource>().Play();
             Destroy(go, go.GetComponent<ParticleSystem>().main.duration);
             Destroy(other.gameObject);
+            GameManager.instance.targetCount_--;
             Destroy(this);
         }
     }
