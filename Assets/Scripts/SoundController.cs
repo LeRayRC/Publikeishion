@@ -3,22 +3,30 @@ using UnityEngine.UI;
 
 public class SoundSliderController : MonoBehaviour
 {
-    public Slider soundSlider_;
-    public AudioSource audioSource_;
-    public GameObject audioManager_;
+  public Slider masterSoundSlider_;
+  public Slider bulletSoundSlider_;
+  public Slider targetSoundSlider_;
+  public AudioSource musicAudioSource_;
+  public AudioSource bulletAudioSource_;
+  public AudioSource targetAudioSource_;
+  public GameObject audioManager_;
 
     void Start()
     {
-        // Asigna la función OnSoundSliderChanged() al evento OnValueChanged del slider
-        soundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
+        // Asigna la funciï¿½n OnSoundSliderChanged() al evento OnValueChanged del slider
+        masterSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
+        bulletSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
+        targetSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
 
         // Establece el valor inicial del slider al volumen actual del audio
-        soundSlider_.value = audioSource_.volume;
+        mastersoundSlider_.value = audioSource_.volume;
     }
 
     void OnSoundSliderChanged()
     {
-        // Ajusta el volumen del audio según el valor del slider
-        audioSource_.volume = soundSlider_.value;
+        // Ajusta el volumen del audio segï¿½n el valor del slider
+        musicAudioSource_.volume = masterSoundSlider_.value;
+        bulletAudioSource_.volume = bulletSoundSlider_.value;
+        targetAudioSource_.volume = targetSoundSlider_.value;
     }
 }
