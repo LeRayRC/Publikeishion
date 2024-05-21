@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public List<TargetPointsController> targetPointsList_ = new List<TargetPointsController>();
 
     public int targetCount_;
+    public bool gamePaused_;
 
 
     
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        gamePaused_ = false;
         lastSpawnSelected_ = 0;
         gameStats_.ResetStats();
         //spawnTarget();
@@ -115,20 +117,6 @@ public class GameManager : MonoBehaviour
         //lastSpawnSelected_ = spawnSelected_;
     }
 
-    // public void UpdateScore(uint score){
-    //     currentScore_ += score;
-    //     if (currentScore_ > highestScore_){
-    //        highestScore_ = currentScore_; 
-    //        highestScoreText_.text = highestScore_.ToString();
-    //     }
-    //     //Update Text
-    //     currentScoreText_.text = currentScore_.ToString();
-    // }
-
-    // public void ResetScore(){
-    //     currentScore_ = 0;
-    //     currentScoreText_.text = currentScore_.ToString();
-    // }
 
     public void SetActiveMenu(GameHelpers.GameMenu menu){
         previousActiveMenu = currentActiveMenu;

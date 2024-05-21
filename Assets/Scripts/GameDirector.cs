@@ -8,7 +8,7 @@ public class GameDirector : MonoBehaviour
     public GameObject tutorial_menus;
     public GameObject aim_menus;
     public GameObject survival_menus;
-
+    public GameObject pause_menus;
     public GameObject scoreBoard_;
     
     AimGameMode aimGameMode_;
@@ -29,8 +29,15 @@ public class GameDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        switch(GameSceneLink.instance.challengeSelected){
+        if(GameManager.instance.gamePaused_){
+            tutorial_menus.SetActive(false);
+            aim_menus.SetActive(false);
+            survival_menus.SetActive(false);
+            scoreBoard_.SetActive(false);
+            pause_menus.SetActive(true);
+        }else{
+            pause_menus.SetActive(false);
+          switch(GameSceneLink.instance.challengeSelected){
             case GameHelpers.GameChallenge.GameChallenge_Tutorial:
                 if (!tutorial_menus.activeSelf)
                 {
@@ -82,6 +89,7 @@ public class GameDirector : MonoBehaviour
                 }
                 survivalGameMode_.CustomUpdate(); 
                 break;
+          }
         }
     }
 }

@@ -9,7 +9,7 @@ public class UIButtonsController : MonoBehaviour
 {
     public GameHelpers.GameMenu menu;
     public GameHelpers.GameChallenge challenge;
-    
+    public InputGameController inputGameController_;
     public GameDirector gameDirector_;    // public void ResetScore(){
         // GameManager.instance.ResetScore();
     // }
@@ -20,6 +20,10 @@ public class UIButtonsController : MonoBehaviour
 
     public void SetControlImage(int id){
         GameManager.instance.controlImage_.GetComponent<Image>().sprite = GameManager.instance.controlImagesList_[id];
+    }
+
+    public void InteractWithPauseNavBar(){
+        GameManager.instance.SetActiveMenu(menu);
     }
 
     public void SelectChallange(){
@@ -52,6 +56,7 @@ public class UIButtonsController : MonoBehaviour
     }
 
     public void ReturnToMainMenu(){
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(0);
     }
 
@@ -69,7 +74,12 @@ public class UIButtonsController : MonoBehaviour
 
 
     public void RestartLevel(){
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void TogglePauseMenu(){
+        inputGameController_.TooglePauseMenu();
     }
 }
 
