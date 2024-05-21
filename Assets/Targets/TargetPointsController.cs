@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TargetPointsController : MonoBehaviour
@@ -14,13 +15,17 @@ public class TargetPointsController : MonoBehaviour
     public Vector3 initScale_;
     public Vector3 endScale_;
     Vector3 currentScale_;
+    public TMP_Text scoreText_;
     void Start()
     {
+        inUse_ = false;
         initLiveTime_ = liveTime_;
     }
 
-    public void Init(){
+    public void Init(float score, Vector3 pos){
         liveTime_ = initLiveTime_;
+        scoreText_.text = Mathf.FloorToInt(score).ToString();
+        transform.position = pos;
     }
 
     // Update is called once per frame
@@ -38,9 +43,10 @@ public class TargetPointsController : MonoBehaviour
         }
     }
 
-    public void Activate(){
+    public void Activate(float score, Vector3 pos){
+
         inUse_ = true;
-        Init();
+        Init(score, pos);
     }
 
 }

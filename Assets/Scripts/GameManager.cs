@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     public List<SplineContainer> targetsSplines_ = new List<SplineContainer>();
 
+    public List<TargetPointsController> targetPointsList_ = new List<TargetPointsController>();
+
     public int targetCount_;
 
 
@@ -171,6 +173,15 @@ public class GameManager : MonoBehaviour
             }
             case GameHelpers.GameMenu.GameMenu_CreditsMenu:{
                 creditsMenu.SetActive(false);
+                break;
+            }
+        }
+    }
+
+    public void ActivateTargetPoint(float score, Vector3 pos){
+        for(int i=0;i<targetPointsList_.Count;i++){
+            if(!targetPointsList_[i].inUse_){
+                targetPointsList_[i].Activate(score,pos);
                 break;
             }
         }
