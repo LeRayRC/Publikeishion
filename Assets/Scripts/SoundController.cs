@@ -19,7 +19,7 @@ public class SoundSliderController : MonoBehaviour
         targetSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
 
         // Establece el valor inicial del slider al volumen actual del audio
-        mastersoundSlider_.value = audioSource_.volume;
+        // masterSoundSlider_.value = audioSource_.volume;
     }
 
     void OnSoundSliderChanged()

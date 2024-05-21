@@ -7,11 +7,12 @@ public class BackgroundMusicManager : MonoBehaviour
 {
     public AudioClip[] musicTracks;
     private AudioSource audioSource;
-    private AudioSource bulletAudioSource_;
+    public AudioSource bulletAudioSource;
+    public AudioSource targetAudioSource;
     private int currentTrackIndex = 0;
     public Slider volumeSlider;
     public Slider bulletVolumeSlider;
-    public Slider TargetVolumeSlider;
+    public Slider targetVolumeSlider;
 
     private void Start()
     {
@@ -28,7 +29,10 @@ public class BackgroundMusicManager : MonoBehaviour
                 audioSource.volume = volumeSlider.value;
             }
             if(bulletVolumeSlider != null){
-              bulletAudioSource_.volume = bulletSoundSlider_.value;
+              bulletAudioSource.volume = bulletVolumeSlider.value;
+            }
+            if(targetVolumeSlider != null){
+              targetAudioSource.volume = targetVolumeSlider.value;
             }
             if (!audioSource.isPlaying)
             {
