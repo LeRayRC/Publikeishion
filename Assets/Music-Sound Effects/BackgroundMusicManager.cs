@@ -7,16 +7,13 @@ public class BackgroundMusicManager : MonoBehaviour
 {
     public AudioClip[] musicTracks;
     private AudioSource audioSource;
-    public AudioSource bulletAudioSource;
-    public AudioSource targetAudioSource;
     private int currentTrackIndex = 0;
-    public Slider volumeSlider;
-    public Slider bulletVolumeSlider;
-    public Slider targetVolumeSlider;
+    float maxVolume_;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        maxVolume_ = audioSource.volume;
         PlayNextTrack();
         Debug.Log("Volume = " + audioSource.volume);
     }
@@ -25,15 +22,9 @@ public class BackgroundMusicManager : MonoBehaviour
     {
         if(audioSource != null){
 
-            if(volumeSlider != null){
-                audioSource.volume = volumeSlider.value;
-            }
-            if(bulletVolumeSlider != null){
-              bulletAudioSource.volume = bulletVolumeSlider.value;
-            }
-            if(targetVolumeSlider != null){
-              targetAudioSource.volume = targetVolumeSlider.value;
-            }
+
+              audioSource.volume = Mathf.Lerp(0.0f, maxVolume_,GameSceneLink.instance.backgroundMusicVolume_);
+            
             if (!audioSource.isPlaying)
             {
                 PlayNextTrack();

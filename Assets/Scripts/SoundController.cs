@@ -4,19 +4,16 @@ using UnityEngine.UI;
 public class SoundSliderController : MonoBehaviour
 {
   public Slider masterSoundSlider_;
-  public Slider bulletSoundSlider_;
-  public Slider targetSoundSlider_;
-  public AudioSource musicAudioSource_;
-  public AudioSource bulletAudioSource_;
-  public AudioSource targetAudioSource_;
-  public GameObject audioManager_;
+  public Slider weaponSoundSlider_;
 
     void Start()
     {
+        masterSoundSlider_.value = GameSceneLink.instance.backgroundMusicVolume_;
+        weaponSoundSlider_.value = GameSceneLink.instance.weaponMusicVolume_;
+
         // Asigna la funci�n OnSoundSliderChanged() al evento OnValueChanged del slider
         masterSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
-        bulletSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
-        targetSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
+        weaponSoundSlider_.onValueChanged.AddListener(delegate { OnSoundSliderChanged(); });
 
         // Establece el valor inicial del slider al volumen actual del audio
         // masterSoundSlider_.value = audioSource_.volume;
@@ -25,8 +22,7 @@ public class SoundSliderController : MonoBehaviour
     void OnSoundSliderChanged()
     {
         // Ajusta el volumen del audio seg�n el valor del slider
-        musicAudioSource_.volume = masterSoundSlider_.value;
-        bulletAudioSource_.volume = bulletSoundSlider_.value;
-        targetAudioSource_.volume = targetSoundSlider_.value;
+        GameSceneLink.instance.backgroundMusicVolume_ = masterSoundSlider_.value;
+        GameSceneLink.instance.weaponMusicVolume_ = weaponSoundSlider_.value;
     }
 }
