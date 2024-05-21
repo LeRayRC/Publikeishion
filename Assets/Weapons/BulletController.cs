@@ -32,6 +32,7 @@ public class BulletController : MonoBehaviour
 
             GameManager.instance.gameStats_.ShotAimed();
             GameManager.instance.gameStats_.AddScore(TC_.score_);
+            GameManager.instance.ActivateTargetPoint(TC_.score_,TC_.gameObject.transform.position);
             //Spawn FX at target
             GameObject go = Instantiate<GameObject>(GameManager.instance.impactTargetFX_, other.gameObject.transform.position, other.gameObject.transform.rotation);
             go.GetComponent<ParticleSystem>().Play();
