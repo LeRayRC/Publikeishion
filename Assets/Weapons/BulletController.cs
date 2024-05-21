@@ -34,10 +34,10 @@ public class BulletController : MonoBehaviour
             GameManager.instance.gameStats_.AddScore(TC_.score_);
             GameManager.instance.ActivateTargetPoint(TC_.score_,TC_.gameObject.transform.position);
             //Spawn FX at target
-            GameObject go = Instantiate<GameObject>(GameManager.instance.impactTargetFX_, other.gameObject.transform.position, other.gameObject.transform.rotation);
-            go.GetComponent<ParticleSystem>().Play();
-            go.GetComponent<AudioSource>().Play();
-            Destroy(go, go.GetComponent<ParticleSystem>().main.duration);
+            //GameObject go = Instantiate<GameObject>(GameManager.instance.impactTargetFX_, other.gameObject.transform.position, other.gameObject.transform.rotation);
+            //go.GetComponent<ParticleSystem>().Play();
+            //go.GetComponent<AudioSource>().Play();
+            //Destroy(go, go.GetComponent<ParticleSystem>().main.duration);
             Destroy(other.gameObject);
             GameManager.instance.targetCount_--;
             Destroy(this);

@@ -17524,6 +17524,7 @@ MonoBehaviour:
   tutorialController: {fileID: 0}
   pistolController_: {fileID: 0}
   targetsSplines_: []
+  targetPointsList_: []
   targetCount_: 0
 --- !u!4 &1479136202
 Transform:

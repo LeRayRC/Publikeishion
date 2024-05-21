@@ -5008,6 +5008,7 @@ GameObject:
   - component: {fileID: 2708598583397607899}
   - component: {fileID: 8055483567869315086}
   - component: {fileID: -7855476111851557668}
+  - component: {fileID: 6246508868731404411}
   m_Layer: 0
   m_Name: CFXR Impact Glowing HDR (Blue)
   m_TagString: Untagged
@@ -5075,7 +5076,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9760,7 +9761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9205bc1bbacc90040a998067b5643d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearBehavior: 2
+  clearBehavior: 0
   cameraShake:
     enabled: 0
     useMainCamera: 1
@@ -10028,6 +10029,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dc51d4ec73ee7479ad80de48607604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &6246508868731404411
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708598583397607911}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_SortAtRoot: 0
 --- !u!1 &2708598584241629776
 GameObject:
   m_ObjectHideFlags: 0

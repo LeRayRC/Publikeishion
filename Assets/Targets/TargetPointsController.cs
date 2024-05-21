@@ -16,6 +16,9 @@ public class TargetPointsController : MonoBehaviour
     public Vector3 endScale_;
     Vector3 currentScale_;
     public TMP_Text scoreText_;
+    public ParticleSystem particles_;
+    public AudioSource audioSource_;
+
     void Start()
     {
         inUse_ = false;
@@ -26,6 +29,8 @@ public class TargetPointsController : MonoBehaviour
         liveTime_ = initLiveTime_;
         scoreText_.text = Mathf.FloorToInt(score).ToString();
         transform.position = pos;
+        particles_.Play();
+        audioSource_.Play();
     }
 
     // Update is called once per frame
@@ -39,6 +44,7 @@ public class TargetPointsController : MonoBehaviour
             transform.localScale = currentScale_;
             if(liveTime_ < 0.0f){
                 inUse_ = false;
+                transform.position = transform.parent.gameObject.transform.position;
             }
         }
     }
