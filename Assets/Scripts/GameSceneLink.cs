@@ -6,6 +6,10 @@ public class GameSceneLink : MonoBehaviour
 {
     public static GameSceneLink instance = null;
     public float highestScore_;
+
+    public float backgroundMusicVolume_;
+
+    public float weaponMusicVolume_;
     // Start is called before the first frame update
     public GameHelpers.GameChallenge challengeSelected;
 
