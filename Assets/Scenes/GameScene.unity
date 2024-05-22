@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
-  m_HoverTimeToSelect: 0.5
+  m_HoverTimeToSelect: 0.2
   m_AutoDeselect: 0
   m_TimeToAutoDeselect: 3
   m_EnableUIInteraction: 1
@@ -7223,7 +7223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SKIP
+  m_text: START
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7770,6 +7770,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2083536810196300845, guid: 9a1f1c106d4bf7d489404bee1ef526a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1289331448}
+    - targetCorrespondingSourceObject: {fileID: 2083536810196300845, guid: 9a1f1c106d4bf7d489404bee1ef526a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1289331452}
   m_SourcePrefab: {fileID: 100100000, guid: 9a1f1c106d4bf7d489404bee1ef526a4, type: 3}
 --- !u!1 &738203973
 GameObject:
@@ -13601,11 +13604,32 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1289331452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289331438}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.87889403, y: 11.9204855, z: 0.91478294}
+  m_Center: {x: -0.025650818, y: 4.9602427, z: 0.042608503}
 --- !u!1 &1294091368
 GameObject:
   m_ObjectHideFlags: 0
@@ -13771,7 +13795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1320020522
 Transform:
   m_ObjectHideFlags: 0

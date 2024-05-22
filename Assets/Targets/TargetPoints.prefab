@@ -51,7 +51,7 @@ MonoBehaviour:
   liveTime_: 1
   initScale_: {x: 2, y: 2, z: 2}
   endScale_: {x: 0, y: 0, z: 0}
-  scoreText_: {fileID: 3101290294092288472}
+  scoreText_: {fileID: 6602150679358015854}
   particles_: {fileID: 7971537004488094115}
   audioSource_: {fileID: 2665186516970917963}
 --- !u!1 &2368388566693453517
